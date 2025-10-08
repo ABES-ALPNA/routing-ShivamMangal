@@ -24,7 +24,7 @@ app.put("/books/:id/issue", (req, res) => {
 });
 
 app.put("/books/:id/return", (req, res) => {
-  const book = books.find(b => b.id == req.params.id);
+  const book = books.find(b => b.id == req.params.id)
   if (!book) return res.status(404).send("Book not found");
   book.status = "available";
   res.json(book);
