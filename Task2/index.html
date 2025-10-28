@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Profile Section -->
+  <section id="about" class="profile">
+    <img src="profile.jpg" alt="Profile Photo">
+    <h1>Shivam Mangal</h1>
+    <p>Hi! I’m a Web Developer passionate about building creative and responsive websites using modern technologies.</p>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2>My Projects</h2>
+    <div class="project-list">
+      <div class="card">
+        <h3>AI Form Builder</h3>
+        <p>A smart form builder using Next.js and Gemini API.</p>
+      </div>
+      <div class="card">
+        <h3>Gaming Tournament App</h3>
+        <p>Platform for organizing and managing gaming tournaments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm" method="POST" action="/contact">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    // Optional: prevent reload for demo purpose
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) alert('Message sent! (check server console)');
+    });
+  </script>
+</body>
+</html>
